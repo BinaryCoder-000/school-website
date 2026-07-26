@@ -1,16 +1,68 @@
-# React + Vite
+# School Website — Sharada Shishu Mandir, Alekhapada
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Public marketing website for the school. Completely independent from the School Management System (`SSMAlekhapada`).
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19 + Vite
+- Tailwind CSS 4
+- React Router DOM
+- Lucide icons
 
-## React Compiler
+## Pages
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Home
+- About School
+- Principal's Message
+- Academics
+- Facilities
+- Gallery
+- Admissions
+- Notices & Events
+- Contact
 
-## Expanding the ESLint configuration
+## Development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+cp .env.example .env
+npm run dev
+```
+
+Dev server: [http://localhost:5173](http://localhost:5173)
+
+## Environment
+
+| Variable | Purpose |
+|----------|---------|
+| `VITE_SMS_URL` | Destination for the Login button (SMS portal). Required in production (no localhost fallback). In development, missing values warn and temporarily use `http://localhost:5174`. |
+| `VITE_SITE_URL` | Canonical site origin for Open Graph, canonical tags, `robots.txt`, and `sitemap.xml` (example: `https://www.your-domain.edu.in`). |
+
+Production build writes absolute `dist/robots.txt` and `dist/sitemap.xml` from `VITE_SITE_URL`.
+
+## Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start Vite on port 5173 |
+| `npm run build` | Production build to `dist/` |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+
+## Project structure
+
+```text
+src/
+  components/
+    layout/     Navbar, Footer, ScrollToTop, MainLayout
+    home/       Homepage sections
+    ui/         Shared presentational helpers
+  data/         Static school content
+  pages/        Route pages
+  utils/        Helpers (SMS URL, dates)
+  assets/       Images
+```
+
+## Independence
+
+Do not share `package.json`, `node_modules`, configs, or source with `SSMAlekhapada`. The Login control only redirects to `VITE_SMS_URL`.

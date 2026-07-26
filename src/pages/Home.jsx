@@ -1,56 +1,37 @@
-import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import Notice from "../components/Notice";
-import Footer from "../components/Footer";
-import banners from "../assets/public/images/banner.jpg";
-import Body_HomeCard from "../components/Body_HomeCard";
-import Dashboard from "../components/Dashboard";
-import Gallery from "../components/Gallery";
+import Seo from "../components/ui/Seo";
+import Hero from "../components/home/Hero";
+import NoticeMarquee from "../components/home/NoticeMarquee";
+import Highlights from "../components/home/Highlights";
+import WhyChooseUs from "../components/home/WhyChooseUs";
+import AcademicPrograms from "../components/home/AcademicPrograms";
+import Infrastructure from "../components/home/Infrastructure";
+import LatestNotices from "../components/home/LatestNotices";
+import UpcomingEvents from "../components/home/UpcomingEvents";
+import Testimonials from "../components/home/Testimonials";
+import GalleryPreview from "../components/home/GalleryPreview";
+import CallToAction from "../components/home/CallToAction";
+import ContactInfo from "../components/home/ContactInfo";
+import { school } from "../data/school";
 
 export default function Home() {
-  const [showCalendar, setShowCalendar] = useState(false);
-
-  useEffect(() => {
-    (async () => {
-      const LocomotiveScroll = (await import("locomotive-scroll")).default;
-      new LocomotiveScroll();
-    })();
-  }, []);
-
   return (
     <>
-      <Navbar setShowCalendar={setShowCalendar} showCalendar={showCalendar} />
-
-      <div
-        className={`fixed top-16 left-0 h-[calc(100vh-4rem)]
-        bg-[#EBAE28]/90 transition-all duration-300 z-40
-        ${showCalendar ? "w-full md:w-72" : "w-0 overflow-hidden"}`}
-      >
-        <Dashboard />
-      </div>
-
-      <div
-        className={`pt-16 transition-all duration-300
-        ${showCalendar ? "ml-0 md:ml-72" : "ml-0"}`}
-      >
-        <img
-          src={banners}
-          alt="Banner"
-          className="w-full
-          h-[30vh] sm:h-[40vh] md:h-[50vh] lg:h-[60vh]"
-        />
-
-        <div className="container mx-auto">
-          <Notice />
-        </div>
-
-        <div className="container mx-auto mt-5">
-          <Body_HomeCard />
-          <Gallery />
-        </div>
-        <Footer />
-      </div>
-
+      <Seo
+        title="Home"
+        description={`${school.fullName} — official school website for academics, admissions, notices, gallery, and contact information.`}
+      />
+      <Hero />
+      <NoticeMarquee />
+      <Highlights />
+      <WhyChooseUs />
+      <AcademicPrograms />
+      <Infrastructure />
+      <LatestNotices />
+      <UpcomingEvents />
+      <Testimonials />
+      <GalleryPreview />
+      <CallToAction />
+      <ContactInfo />
     </>
   );
 }

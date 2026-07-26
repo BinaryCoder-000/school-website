@@ -1,95 +1,71 @@
-import Navbar from "../components/Navbar";
+import PageHero from "../components/ui/PageHero";
+import Seo from "../components/ui/Seo";
+import Reveal from "../components/ui/Reveal";
 import logo from "../assets/public/images/white_logo.jpeg";
+import { school, whyChooseUs } from "../data/school";
+
 export default function About() {
   return (
     <>
-      <Navbar />
-      <div className="relative h-[50vh] w-full">
-        <img
-          src={logo}
-          alt="School Logo"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
-        />
-        <div className="absolute inset-0 bg-black/50"></div>
+      <Seo
+        title="About School"
+        description={`Learn about the mission, vision, and values of ${school.fullName}.`}
+      />
+      <PageHero
+        title="About Our School"
+        subtitle={school.tagline}
+        image={logo}
+        imageAlt=""
+      />
 
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
-          <h1 className="text-5xl font-bold tracking-wide">Our Mission</h1>
-          <p className="mt-4 max-w-2xl text-lg text-gray-200">
-            Nurturing curiosity, creativity, and confidence in every child
-          </p>
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="space-y-5 text-base leading-relaxed text-slate-700 sm:text-lg">
+            <p>{school.mission}</p>
+            <p>
+              <span className="font-semibold text-blue-800">Our vision: </span>
+              {school.vision}
+            </p>
+            <p>
+              Located in {school.address.line2}, {school.shortName} partners
+              with families to nurture emotionally healthy children who are
+              ready for the next stage of schooling and life.
+            </p>
+          </div>
+
+          <Reveal>
+            <aside className="rounded-2xl bg-blue-50 p-6 ring-1 ring-blue-100 sm:p-8">
+              <h2 className="text-xl font-semibold text-blue-800">At a glance</h2>
+              <dl className="mt-5 grid grid-cols-2 gap-4">
+                {school.stats.map((stat) => (
+                  <div key={stat.label}>
+                    <dt className="text-sm text-slate-500">{stat.label}</dt>
+                    <dd className="text-2xl font-bold text-blue-700">
+                      {stat.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </aside>
+          </Reveal>
         </div>
-      </div>
-      <div className="w-[95%] mx-auto py-16 space-y-10">
-  <div className="max-w-4xl space-y-5">
-    <p className="text-lg text-gray-700 leading-relaxed">
-      Each and every child is a unique individual with his/her own talents and abilities.
-      Children are born learners, with a strong sense of curiosity, imagination, and creativity.
-    </p>
 
-    <p className="text-lg text-gray-700 leading-relaxed">
-      At <span className="font-semibold">Sharada Shishu Mandir, Alekhapada</span>,
-      our mission is to treat each child with respect while nurturing their natural
-      desire to learn. We believe emotionally healthy children are best prepared
-      for later schooling.
-    </p>
-  </div>
-  </div>
-
-  <div className="grid md:grid-cols-2 gap-6 mt-10">
-  {[
-    "Low student–teacher ratio",
-    "Creative curriculum focused on curiosity",
-    "Pre-reading & pre-writing skill development",
-    "Safe & joyful play environment",
-    "Music and art for self-expression",
-  ].map((item, index) => (
-    <div
-      key={index}
-      className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-    >
-      <h3 className="font-semibold text-lg text-blue-600">
-        {item}
-      </h3>
-    </div>
-  ))}
-</div>
-
-
-  <div className="mt-20 bg-blue-50 py-14 rounded-2xl">
-  <h2 className="text-4xl font-bold text-center mb-12">
-    Why Parents Trust Us
-  </h2>
-
-  <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto px-6">
-    
-    {/* Teachers */}
-    <div className="bg-white rounded-xl shadow-md p-8 text-center
-                    hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-      <div className="text-5xl mb-4">👨‍🏫</div>
-      <h3 className="text-3xl font-bold text-blue-600">20+</h3>
-      <p className="mt-2 text-gray-600 font-medium">Dedicated Teachers</p>
-    </div>
-
-    {/* Students */}
-    <div className="bg-white rounded-xl shadow-md p-8 text-center
-                    hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-      <div className="text-5xl mb-4">👧</div>
-      <h3 className="text-3xl font-bold text-blue-600">500+</h3>
-      <p className="mt-2 text-gray-600 font-medium">Happy Students</p>
-    </div>
-
-    {/* Experience */}
-    <div className="bg-white rounded-xl shadow-md p-8 text-center
-                    hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-      <div className="text-5xl mb-4">🏆</div>
-      <h3 className="text-3xl font-bold text-blue-600">15+</h3>
-      <p className="mt-2 text-gray-600 font-medium">Years of Excellence</p>
-    </div>
-
-  </div>
-</div>
-
-
+        <div className="mt-16">
+          <h2 className="text-2xl font-semibold text-slate-800 sm:text-3xl">
+            What guides our classrooms
+          </h2>
+          <ul className="mt-8 grid gap-4 md:grid-cols-2">
+            {whyChooseUs.map((item) => (
+              <li
+                key={item}
+                className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <h3 className="font-semibold text-blue-700">{item}</h3>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </>
   );
 }

@@ -1,11 +1,38 @@
 @import "tailwindcss";
 
-/* =====================================
-   GLOBAL SMOOTHNESS
-   ===================================== */
+@theme {
+  --font-sans: "Poppins", "Segoe UI", sans-serif;
+}
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #f8fafc;
+    color: #1e293b;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid #f97316;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .marquee-content,
+    .animate-left,
+    .animate-right,
+    .fade-slide {
+      animation: none !important;
+    }
+  }
 }
 
 /* =====================================
@@ -21,10 +48,12 @@ html {
 .marquee-content {
   display: flex;
   gap: 1.5rem;
+  padding-inline: 1rem;
   animation: marquee-left 35s linear infinite;
 }
 
-.marquee:hover .marquee-content {
+.marquee:hover .marquee-content,
+.pause-on-hover:hover {
   animation-play-state: paused;
 }
 
@@ -55,7 +84,7 @@ html {
 }
 
 /* =====================================
-   FADE + SLIDE (HEADING ANIMATION)
+   FADE + SLIDE
    ===================================== */
 
 .fade-slide {
@@ -71,23 +100,4 @@ html {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-/* =====================================
-   CARD HOVER (SOFT & PROFESSIONAL)
-   ===================================== */
-
-.card-hover {
-  @apply rounded-xl p-5
-         transition-all duration-300 ease-out
-         hover:-translate-y-1 hover:shadow-md;
-}
-
-/* =====================================
-   IMAGE HOVER (MINIMAL & SAFE)
-   ===================================== */
-
-.img-hover-tilt {
-  @apply transition-transform duration-300 ease-out
-         hover:scale-[1.02];
 }

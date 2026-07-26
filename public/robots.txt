@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Update VITE_SITE_URL before production build so dist/robots.txt gets the correct Sitemap URL.
+Sitemap: /sitemap.xml
