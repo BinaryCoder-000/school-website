@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/* =====================================
+   GLOBAL SMOOTHNESS
+   ===================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* =====================================
+   MARQUEE (CALM & SCHOOL FRIENDLY)
+   ===================================== */
+
+.marquee {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 1.5rem;
+  animation: marquee-left 35s linear infinite;
+}
+
+.marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.animate-left {
+  animation: marquee-left 35s linear infinite;
+}
+
+.animate-right {
+  animation: marquee-right 35s linear infinite;
+}
+
+/* =====================================
+   FADE + SLIDE (HEADING ANIMATION)
+   ===================================== */
+
+.fade-slide {
+  animation: fadeSlide 0.7s ease-out;
+}
+
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================================
+   CARD HOVER (SOFT & PROFESSIONAL)
+   ===================================== */
+
+.card-hover {
+  @apply rounded-xl p-5
+         transition-all duration-300 ease-out
+         hover:-translate-y-1 hover:shadow-md;
+}
+
+/* =====================================
+   IMAGE HOVER (MINIMAL & SAFE)
+   ===================================== */
+
+.img-hover-tilt {
+  @apply transition-transform duration-300 ease-out
+         hover:scale-[1.02];
+}
